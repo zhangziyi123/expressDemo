@@ -5,32 +5,70 @@
  */
 var db = {};
 var pg = require('pg');
-/*var conString = "postgres://postgres:admin@localhost/userms";
+
+var conString = "postgres://postgres:admin@localhost/userms";
 var client = new pg.Client(conString);
 
-client.connect(function(error, results) {
-    if(error){
-        console.log('ClientConnectionReady Error: ' + error.message);
-        client.end();
-        return;
-    }
-    console.log('Connecting to postgres...');
-    console.log('Connected to postgres automatically.');
-    console.log('connection success...\n');
-});*/
-
-db.query = function(sql) {
-
-    return new Promise(function(resolve, reject) {
-        if (sql < 100) {
-            //成功操作,对应 then方法
-            resolve("success")
-        }
-        else {
-            //失败操作,对应catch方法
-            reject('error')
+db.query = function (sql, callback) {
+    var result = {};
+    result.success = false;
+    client.connect(function (error, results) {
+        if (error) {
+            console.log('ClientConnectionReady Error: ' + error.message);
+            client.end();
+            return;
+        } else {
+            // var result = {};
+            console.log('connect success');
+            console.log(sql);
+            if (sql) {
+                client.query(sql, function (err, rows, fields) {
+                    if (err) {
+                        console.log('获取数据失败');
+                        client.end();
+                        return;
+                    }
+                    console.log('获取数据成功');
+                    result.success = true;
+                    result.rows = rows;
+                    result.fields = fields;
+                    client.end();
+                    callback&&callback(result);
+                })
+            } else {
+                result.success = false;
+                client.end();
+                callback&&callback(result);
+            }
         }
     })
+
+    /*  var result = {};
+     result.success = true;
+     if (sql) {
+     console.log('开始请求数据');
+     client.query(sql, function (err, rows, fields) {
+     console.log('获取数据成功');
+     result.success = true;
+     result.rows = rows;
+     result.fields = fields;
+     client.end();
+     })
+     } else {
+     result.success = false;
+     client.end();
+     }
+
+     return new Promise(function (resolve, reject) {
+     if (result.success) {
+     //成功操作,对应 then方法
+     resolve(result)
+     }
+     else {
+     //失败操作,对应catch方法
+     reject(result)
+     }
+     })*/
 }
 
 module.exports = db;
