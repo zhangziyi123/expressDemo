@@ -12,6 +12,7 @@ router.get('/login', function (req, res, next) {
     var args = req.query;
     var name = req.query.name;
     var password = req.query.password;
+    // "select * from user_tb where name='zzy'",
     db.query("select * from user_tb", sqlObj, function (result) {
         var flag = false;
         var message = "";
@@ -38,6 +39,26 @@ router.get('/login', function (req, res, next) {
     })
 });
 
+/* 修改密码接口 */
+router.get('/modify', function (req, res, next) {
+    console.log("修改用户信息接口");
+    var name = req.query.name;
+    var password = req.query.password;
+    var newPwd = req.query.newpassword;
+})
+
+router.get('/modify/password', function (req, res, next) {
+    console.log("修改用户信息接口");
+    db.query("update user_tb set password='123' where name='zzy'", sqlObj, function (result) {
+        console.log(result);
+        res.render('index', {title: 'Hey', message: 'Hello there!'});
+        /*      if (result.success) {
+         res.send({success: true, message: '修改密码成功!'});
+         } else {
+         res.send({success: false, message: '修改密码失败!'});
+         }*/
+    })
+})
 module.exports = router;
 
 

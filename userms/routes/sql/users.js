@@ -10,7 +10,7 @@ db.query = function (sql, client, callback) {
     if (sql) {
         client.query(sql, function (err, dataInfo) {
             if (err) {
-                console.log('获取数据失败');
+                console.log('获取数据失败' + err);
                 return;
             }
             console.log('获取数据成功');
