@@ -21,12 +21,33 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
-    // allow async-await
-    'generator-star-spacing': 'off',
-    // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-
+    // 箭头函数用小括号括起来
+    'arrow-parens': 0,
+    // 生成器函数*的前后空格
+    'generator-star-spacing': 0,
+    // "no-debugger": 2,//禁止使用debugger
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    //空行最多不能超过2行
+    "no-multiple-empty-lines": [1, {"max": 10}],
+    //一行结束后面不要有空格
+    "no-trailing-spaces": 0,
+    "new-cap": "off",
     //语句以分号结尾
-    semi: "off"
+    semi: "off",
+    //禁止在使用new构造一个实例后不赋值
+    "no-new": "off",
+    "no-eval": "off",
+    // "no-undef": 1,
+    "quotes": "off",
+    "no-unused-vars": "off",
+    "camelcase": 0,
+    "space-before-function-paren": [0, "always"],
+    "spaced-comment": 0,
+    "template-curly-spacing": 0,
+    "no-throw-literal": 0,
+    "no-useless-call": 0,
+    "no-undef": 0,
+    "no-empty-pattern": 0,
+    "no-useless-escape": 0
   }
 }
