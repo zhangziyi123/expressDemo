@@ -3,9 +3,11 @@ var router = express.Router();
 var sqlObj = require('./sql/connectSql.js');
 var db = require('./sql/users.js');
 /* GET users listing. */
+
 router.get('/user', function (req, res, next) {
     res.send('respond with a resource');
 });
+
 
 /* 登录接口 */
 router.get('/login', function (req, res, next) {
@@ -39,6 +41,9 @@ router.get('/login', function (req, res, next) {
     })
 });
 
+router.get('/login/:name', function (req, res, next) {
+    res.send("hew1231123121231231zdfafasfasdf2");
+});
 /* 修改密码接口 */
 router.get('/modify', function (req, res, next) {
     console.log("修改用户信息接口");
