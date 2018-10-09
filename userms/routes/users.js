@@ -2,12 +2,17 @@ var express = require('express');
 var router = express.Router();
 var sqlObj = require('./sql/connectSql.js');
 var db = require('./sql/users.js');
-var token = require('../public/util/token');
+var jwt = require('jwt-simple');
+var redis = require('redis');
+var client = redis.createClient('6379', '127.0.0.1');
+var moment = require('moment');
+
+var app = express();
 /* GET users listing. */
 router.get('/user', function (req, res, next) {
     res.send('respond with a resource');
 });
-
+app.set('jwtTokenSecret', "firstguy");  // 设置加密用的密钥
 
 /* 登录接口 */
 router.get('/login', function (req, res, next) {
@@ -56,15 +61,20 @@ router.get('/login/:name/:password', function (req, res, next) {
             if (result.success) {
                 if (result.rows.length > 0) {
                     var data = result.rows[0];
-                    var userToken = token.createToken(data.userid);
+                    var expires = moment().add(7, 'days').valueOf();
+                    var token = jwt.encode({
+                        iss: data.userid,
+                        exp: expires
+                    }, app.get('jwtTokenSecret'));
+
                     var userInfo = {
                         name: data.name,
                         userid: data.userid,
-                        token: userToken
+                        token: token
                     }
-                    req.session.userInfo = userInfo;
+                    // 将用户信息保存到redis中，键用userid
+                    client.set(data.userid, JSON.stringify(userInfo)); // 注意，value会被转为字符串,所以存的时候要先把value 转为json字符串
                     res.send({success: true, userInfo: userInfo});
-                    // req.session.cookie.token = userToken; // 不能存cookie里面，不然再次请求获取不到值
                 } else {
                     res.send({success: true, message: '用户名或密码错误!'});
                 }
@@ -97,31 +107,12 @@ router.get('/modify/password', function (req, res, next) {
 
 /* 获取用户详情接口-根据token获取用户详情 */
 router.get('/userInfo', function (req, res, next) {
-    console.log("sessionID", req.sessionID);
-    console.log("sessionToken", req.session);
     var tk = req.headers.autoken || "";
-    var userInfo = req.session.userInfo || "";
-    var sessionToken = userInfo ? userInfo.token : "";
-    console.log("tk", tk);
-    res.send({data: userInfo});
-    /*    if (tk && tk === sessionToken && token.checkToken(tk)) {
-     var userid = userInfo.userid;
-     var sqlStr = "select * from user_tb where userid = '" + userid + "'";
-     db.query(sqlStr, sqlObj, function (result) {
-     if (result.success) {
-     if (result.rows.length > 0) {
-     var data = result.rows[0];
-     res.send({success: true, userInfo: data});
-     } else {
-     res.send({success: true, message: "没有查询到该用户的详情"});
-     }
-     } else {
-     res.send({success: false, message: 'server error'});
-     }
-     })
-     } else {
-     res.send({success: false});
-     }*/
+    if (tk) {
+        var decoded = jwt.decode(tk, app.get('jwtTokenSecret'));
+        console.log(decoded);
+    }
+    res.send({data: decoded});
 })
 
 // 退出登录
