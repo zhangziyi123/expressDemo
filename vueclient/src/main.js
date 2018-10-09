@@ -6,13 +6,14 @@ import router from './router'
 import { directive as onClickOutside } from 'vue-on-click-outside'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
-
+import store from "./store";
 Vue.use(iView);
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

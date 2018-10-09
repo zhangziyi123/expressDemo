@@ -15,9 +15,13 @@
   },
   "dependencies": {
     "iview": "^2.13.0",
+    "js-cookie": "^2.2.0",
+    "store2": "^2.7.0",
     "vue": "^2.5.2",
     "vue-on-click-outside": "^1.0.3",
+    "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1",
+    "vuex": "^3.0.1",
     "zjgis-ui": "^1.12.6",
     "zrender": "^4.0.3"
   },

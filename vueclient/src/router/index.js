@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-const user = resolve => require(['../components/user/user.vue'], resolve)
+const user = resolve => require(['../components/users/user.vue'], resolve)
 
 const router = new Router({
   linkActiveClass: 'active',
@@ -22,7 +22,6 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  debugger
   if (!document.cookie) {
     if (to.name !== 'user') {
       router.push({name: 'user'})

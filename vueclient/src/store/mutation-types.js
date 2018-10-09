@@ -5,6 +5,7 @@
  */
 
 /********  用户模块 *********/
-export const LOGIN = LOGIN;
-export const CHANGE_PASSWORD_USER = CHANGE_PASSWORD_USER; // 修改用户密码
+export const LOGIN = 'LOGIN'
+export const GET_USERINFO = 'GET_USERINFO'
+export const CHANGE_PASSWORD_USER = 'CHANGE_PASSWORD_USER' // 修改用户密码
 
