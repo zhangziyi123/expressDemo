@@ -8,10 +8,12 @@ var bodyParser = require('body-parser');
 var app = express();
 var index = require('./routes/index');
 var users = require('./routes/users');
+var upload = require('./routes/upload');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+global.jwtTokenSecret = "firstguy"; // 设置加密用的密钥
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -34,7 +36,7 @@ app.all('*', function (req, res, next) {
 });
 app.use('/', index);
 app.use('/users', users);
-
+app.use('/uploadfile', upload);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Not Found');

@@ -12,7 +12,6 @@ var app = express();
 router.get('/user', function (req, res, next) {
     res.send('respond with a resource');
 });
-app.set('jwtTokenSecret', "firstguy");  // 设置加密用的密钥
 
 /* 登录接口 */
 router.get('/login', function (req, res, next) {
@@ -47,8 +46,7 @@ router.get('/login', function (req, res, next) {
     })
 });
 /*
- * 保存用户token到session中 ？ 意义？ 用户每次登录的时候就读一次数据库，因为不知道数据库用户信息是否发生改变，这样操作不对吗？
- * 用了token还有必要用session吗
+ *
  * */
 router.get('/login/:name/:password', function (req, res, next) {
     var params = {
@@ -65,7 +63,7 @@ router.get('/login/:name/:password', function (req, res, next) {
                     var token = jwt.encode({
                         iss: data.userid,
                         exp: expires
-                    }, app.get('jwtTokenSecret'));
+                    }, global.jwtTokenSecret);
 
                     var userInfo = {
                         name: data.name,
@@ -109,7 +107,7 @@ router.get('/modify/password', function (req, res, next) {
 router.get('/userInfo', function (req, res, next) {
     var tk = req.headers.autoken || "";
     if (tk) {
-        var decoded = jwt.decode(tk, app.get('jwtTokenSecret'));
+        var decoded = jwt.decode(tk, global.jwtTokenSecret);
         console.log(decoded);
     }
     res.send({data: decoded});
