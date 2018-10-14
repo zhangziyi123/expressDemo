@@ -3,10 +3,8 @@ var router = express.Router();
 var sqlObj = require('./sql/connectSql.js');
 var db = require('./sql/users.js');
 var jwt = require('jwt-simple');
-var redis = require('redis');
-var client = redis.createClient('6379', '127.0.0.1');
 var moment = require('moment');
-
+var jwtUnit = require('../public/util/jwtUtil');
 var app = express();
 /* GET users listing. */
 router.get('/user', function (req, res, next) {
@@ -59,7 +57,8 @@ router.get('/login/:name/:password', function (req, res, next) {
             if (result.success) {
                 if (result.rows.length > 0) {
                     var data = result.rows[0];
-                    var expires = moment().add(7, 'days').valueOf();
+                    var expires = moment().add(30, 'minute').valueOf();
+                    //    var expires = moment().add(7, 'days').valueOf();
                     var token = jwt.encode({
                         iss: data.userid,
                         exp: expires
@@ -71,7 +70,7 @@ router.get('/login/:name/:password', function (req, res, next) {
                         token: token
                     }
                     // 将用户信息保存到redis中，键用userid
-                    client.set(data.userid, JSON.stringify(userInfo)); // 注意，value会被转为字符串,所以存的时候要先把value 转为json字符串
+                    global.redisClient.set(data.userid, JSON.stringify(userInfo)); // 注意，value会被转为字符串,所以存的时候要先把value 转为json字符串
                     res.send({success: true, userInfo: userInfo});
                 } else {
                     res.send({success: true, message: '用户名或密码错误!'});
@@ -106,11 +105,12 @@ router.get('/modify/password', function (req, res, next) {
 /* 获取用户详情接口-根据token获取用户详情 */
 router.get('/userInfo', function (req, res, next) {
     var tk = req.headers.autoken || "";
-    if (tk) {
-        var decoded = jwt.decode(tk, global.jwtTokenSecret);
-        console.log(decoded);
+    var decoded = jwt.decode(tk, global.jwtTokenSecret);
+    if (decoded && decoded.iss) {
+        global.redisClient.get(decoded.iss, function (err, userInfo) {
+            res.send({sucess: true, msg: JSON.parse(userInfo)});
+        })
     }
-    res.send({data: decoded});
 })
 
 // 退出登录
