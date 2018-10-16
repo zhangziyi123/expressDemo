@@ -10,11 +10,14 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var upload = require('./routes/upload');
 
+var redis = require('redis');
+var client = redis.createClient('6379', '127.0.0.1');
+var jwtUnit = require('./public/util/jwtUtil');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 global.jwtTokenSecret = "firstguy"; // 设置加密用的密钥
-
+global.redisClient = client; // 将这个作为全局对象，这样就不用每个地方引用，因为担心其配置改变会导致大量需要修改的地方
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -32,7 +35,27 @@ app.all('*', function (req, res, next) {
     res.header("X-Powered-By", ' 3.2.1');
     res.header("Cache-Control", 'no-store'); // 缓存
     res.header("Content-Type", "application/json;charset=utf-8");
-    next();
+
+    // 个别接口可以不带token进行请求
+    // TODU： 待优化
+    if (req.originalUrl.indexOf('users/login') > -1) {
+        next();
+    } else {
+        var tk = req.headers.autoken || "";
+        if (tk) {
+            jwtUnit.isTokenOverdue(tk, global.jwtTokenSecret, client, function (result) {
+                if (result === null) {
+                    res.send('redis error', 500);
+                } else if (result.overdue) {
+                    res.send({sucess: false, msg: 'Access token has expired'});
+                } else {
+                    next();
+                }
+            });
+        } else {
+            res.send('token is required', 401);
+        }
+    }
 });
 app.use('/', index);
 app.use('/users', users);
