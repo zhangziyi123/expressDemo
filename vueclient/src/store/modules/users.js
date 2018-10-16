@@ -19,7 +19,6 @@ export default {
       }, (response) => {
         // 请求失败错误处理
       }).then(res => {
-        console.log(res)
         Cookie.set("expressCookie", JSON.stringify(res.userInfo));
       })
     },
