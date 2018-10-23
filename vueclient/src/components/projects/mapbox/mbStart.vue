@@ -1,11 +1,20 @@
 <template>
-<div id="mapPanel" class="mapPanel"></div>
+<div id="mapPanel" class="mapPanel">
+  <layer-manage></layer-manage>
+  <style-manage></style-manage>
+</div>
 </template>
 
 <script>
 import "mapbox-gl/dist/mapbox-gl.css";
 import mapboxgl from "mapbox-gl";
+import layermanage from "./layerManage/layermanage.vue";
+import stylemanage from "./styleManage/stylemanage.vue";
 export default {
+  components: {
+    'layer-manage': layermanage,
+    'style-manage': stylemanage
+  },
   data() {
     return {}
   },
@@ -21,46 +30,51 @@ export default {
       pitch: 15 // 倾斜度
       // renderWorldCopies: false
     })
-    // Add zoom and rotation controls to the map.
-    map.addControl(new mapboxgl.NavigationControl(), 'top-left');
-    map.addControl(new mapboxgl.ScaleControl({
-      maxWidth: 80,
-      unit: 'metric'
-    }));
+    map.on('load', function () {
+      // Add zoom and rotation controls to the map.
+      map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+      map.addControl(new mapboxgl.ScaleControl({
+        maxWidth: 80,
+        unit: 'metric'
+      }));
 
-    map.addControl(new mapboxgl.GeolocateControl({
-      positionOptions: {
-        enableHighAccuracy: true
-      }
-    }));
+      map.addControl(new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true
+        }
+      }));
 
-    map.addControl(new mapboxgl.FullscreenControl());
-    var marker = new mapboxgl.Marker().setLngLat([120, 23]).addTo(map);
+      map.addControl(new mapboxgl.FullscreenControl());
+      var marker = new mapboxgl.Marker().setLngLat([120, 23]).addTo(map);
 
 
-    map.addSource('some id', {
-      type: 'geojson',
-      data: {
-        "type": "FeatureCollection",
-        "features": [{
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              120.22,
-              30.2
-            ]
-          }
-        }]
-      }
-    });
+      map.addSource('some id', {
+        type: 'geojson',
+        data: {
+          "type": "FeatureCollection",
+          "features": [{
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                120.22,
+                30.2
+              ]
+            }
+          }]
+        }
+      });
+
+      let sources = map.getLayers();
+      console.log(sources);
+    })
   }
 }
 </script>
 
 <style>
-.mapPanel{ position:absolute; top:0; bottom:0;left: 10.5%; width:89.5%;height:100%; }
+.mapPanel{ position:absolute; top:0; bottom:0; left:10.5%; width:89.5%; height:100%; }
 .mapPanel .mapboxgl-canvas-container{
   position:absolute;
 }
