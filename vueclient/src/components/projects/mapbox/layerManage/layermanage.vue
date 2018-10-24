@@ -1,14 +1,17 @@
 <template>
-  <Card class="gis-lymg">
-    <p slot="title">图层管理</p>
-    <p>Content of card</p>
-    <p>Content of card</p>
-    <p>Content of card</p>
-  </Card>
+<Card class="gis-lymg">
+  <p slot="title">图层管理</p>
+  <p v-if="Array.isArray(layers)" v-for="item in layers" :key="item.id">{{item.id}}</p>
+</Card>
 </template>
 
 <script>
 export default {
+  props: {
+    layers: {
+      type: Array
+    }
+  },
   data() {
     return {}
   }
@@ -21,7 +24,7 @@ export default {
   float:left;
   left:0px;
   height:100vh;
-  width:20vw;
+  width:18vw;
   background-color:#d2d6de;
   z-index:11111;
 }
