@@ -1,12 +1,12 @@
 <template>
 <Form ref="formInline" :model="formInline" :rules="ruleInline" inline>
   <FormItem prop="user">
-    <i-input type="text" v-model="formInline.user" placeholder="Username">
+    <i-input type="text" v-model="formInline.user" placeholder="账户">
       <Icon type="ios-person-outline" slot="prepend"></Icon>
     </i-input>
   </FormItem>
   <FormItem prop="password">
-    <i-input type="password" v-model="formInline.password" placeholder="Password">
+    <i-input type="password" v-model="formInline.password" placeholder="密码">
       <Icon type="ios-locked-outline" slot="prepend"></Icon>
     </i-input>
   </FormItem>

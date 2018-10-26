@@ -4,6 +4,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 const user = resolve => require(['../components/users/user.vue'], resolve)
+const signin = resolve => require(['../components/login/signin.vue'], resolve)
 
 const router = new Router({
   linkActiveClass: 'active',
