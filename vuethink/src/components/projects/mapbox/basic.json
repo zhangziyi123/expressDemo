@@ -1,0 +1,1504 @@
+{
+  "layers": [
+    { "id": "背景", "type": "background", "layout": {}, "paint": { "background-color": "white" }, "interactive": true },
+    {
+      "id": "行政区域底图",
+      "type": "fill",
+      "metadata": { "zhejiang:groups": "境界面" },
+      "source": "zhejiang",
+      "source-layer": "bou_py",
+      "minzoom": 7,
+      "layout": {},
+      "paint": { "fill-color": "hsl(55, 11%, 96%)", "fill-opacity": 1 }
+    },
+    {
+      "minzoom": 7,
+      "layout": {},
+      "metadata": { "zhejiang:groups": "水系面" },
+      "filter": ["all", ["in", "$type", "Polygon", "LineString", "Point"], ["all", ["in", "fcode", "2501000500"]]],
+      "type": "fill",
+      "source": "zhejiang",
+      "id": "海面",
+      "paint": { "fill-color": "rgba(171, 198, 239, 1)", "fill-outline-color": "rgba(171, 198, 239, 1)" },
+      "source-layer": "hyd_py"
+    },
+    {
+      "minzoom": 7,
+      "layout": {},
+      "metadata": { "zhejiang:groups": "水系面" },
+      "filter": ["all", ["in", "$type", "Polygon", "LineString", "Point"], ["all", ["in", "fcode", "2507000500"]]],
+      "type": "fill",
+      "source": "zhejiang",
+      "id": "海岛",
+      "paint": { "fill-color": "rgba(245, 245, 245, 1)" },
+      "source-layer": "hyd_py"
+    },
+    {
+      "minzoom": 7,
+      "layout": {},
+      "metadata": { "zhejiang:groups": "水系面" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        ["all", ["!in", "fcode", "2507000500", "2501000500", "2602000500"]]
+      ],
+      "type": "fill",
+      "source": "zhejiang",
+      "id": "河流湖泊",
+      "paint": { "fill-color": "rgba(171, 198, 239, 1)", "fill-outline-color": "rgba(171, 198, 239, 1)" },
+      "source-layer": "hyd_py"
+    },
+    {
+      "minzoom": 7,
+      "layout": {},
+      "metadata": { "zhejiang:groups": "水系面" },
+      "filter": ["all", ["in", "$type", "Polygon", "LineString", "Point"], ["all", ["in", "fcode", "2602000500"]]],
+      "type": "fill",
+      "source": "zhejiang",
+      "id": "湖岛",
+      "paint": { "fill-color": "rgba(245, 245, 245, 1)" },
+      "source-layer": "hyd_py"
+    },
+    {
+      "id": "绿地",
+      "type": "fill",
+      "metadata": { "zhejiang:groups": "植被面" },
+      "source": "zhejiang",
+      "source-layer": "veg_py",
+      "minzoom": 7,
+      "layout": {},
+      "paint": { "fill-color": "rgba(187, 215, 141, 1)" }
+    },
+    {
+      "minzoom": 9,
+      "layout": {},
+      "metadata": { "zhejiang:groups": "居民地面" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        ["all", ["in", "fcode", "3404010500", "3404090500"]]
+      ],
+      "type": "fill",
+      "source": "zhejiang",
+      "id": "体育场",
+      "paint": { "fill-color": "rgba(255, 190, 190, 1)" },
+      "source-layer": "res_py"
+    },
+    {
+      "minzoom": 9,
+      "layout": {},
+      "metadata": { "zhejiang:groups": "居民地面" },
+      "filter": ["all", ["in", "$type", "Polygon", "LineString", "Point"], ["all", ["in", "fcode", "3404040500"]]],
+      "type": "fill",
+      "source": "zhejiang",
+      "id": "游泳池",
+      "paint": { "fill-color": "rgba(171, 198, 239, 1)" },
+      "source-layer": "res_py"
+    },
+    {
+      "minzoom": 9,
+      "layout": {},
+      "metadata": { "zhejiang:groups": "居民地面" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        ["all", ["!in", "fcode", "3404010500", "3404090500", "3404040500"]]
+      ],
+      "type": "fill",
+      "source": "zhejiang",
+      "id": "居民地",
+      "paint": { "fill-color": "rgba(231, 222, 208, 1)" },
+      "source-layer": "res_py"
+    },
+    {
+      "minzoom": 7,
+      "layout": { "visibility": "visible" },
+      "metadata": { "zhejiang:groups": "境界线" },
+      "maxzoom": 14,
+      "filter": ["all", ["in", "$type", "Polygon", "LineString", "Point"], ["all", ["in", "fcode", "6302011314"]]],
+      "type": "line",
+      "source": "zhejiang",
+      "id": "省级行政区界线",
+      "paint": {
+        "line-color": "rgb(60, 60, 60)",
+        "line-width": 0.4,
+        "line-dasharray": ["literal", [30, 10, 10, 10, 10, 10]]
+      },
+      "source-layer": "bou_ln"
+    },
+    {
+      "minzoom": 7,
+      "layout": { "visibility": "visible" },
+      "metadata": { "zhejiang:groups": "境界线" },
+      "maxzoom": 14,
+      "filter": ["all", ["in", "$type", "Polygon", "LineString", "Point"], ["all", ["in", "fcode", "6402011314"]]],
+      "type": "line",
+      "source": "zhejiang",
+      "id": "市级行政区界线",
+      "paint": {
+        "line-color": "rgb(150, 149, 149)",
+        "line-width": 0.4,
+        "line-dasharray": ["literal", [30, 10, 10, 10, 10, 10]]
+      },
+      "source-layer": "bou_ln"
+    },
+    {
+      "minzoom": 7,
+      "layout": { "visibility": "visible" },
+      "metadata": { "zhejiang:groups": "境界线" },
+      "maxzoom": 14,
+      "filter": ["all", ["in", "$type", "Polygon", "LineString", "Point"], ["all", ["in", "fcode", "6502011314"]]],
+      "type": "line",
+      "source": "zhejiang",
+      "id": "县级行政区界线",
+      "paint": {
+        "line-color": "rgb(150, 150, 150)",
+        "line-width": 0.4,
+        "line-dasharray": ["literal", [30, 10, 10, 10, 10, 10]]
+      },
+      "source-layer": "bou_ln"
+    },
+    {
+      "minzoom": 7,
+      "layout": { "visibility": "visible" },
+      "metadata": { "zhejiang:groups": "境界线" },
+      "maxzoom": 14,
+      "filter": ["all", ["in", "$type", "Polygon", "LineString", "Point"], ["all", ["in", "fcode", "6602011314"]]],
+      "type": "line",
+      "source": "zhejiang",
+      "id": "乡镇行政区界线",
+      "paint": {
+        "line-color": "rgb(150, 150, 150)",
+        "line-width": 0.4,
+        "line-dasharray": ["literal", [30, 10, 10, 10, 10, 10]]
+      },
+      "source-layer": "bou_ln"
+    },
+    {
+      "minzoom": 9,
+      "layout": { "line-join": "round", "line-cap": "round" },
+      "metadata": { "zhejiang:groups": "铁路线" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        ["all", ["!in", "fcode", "4301011314", "4301012314"]]
+      ],
+      "type": "line",
+      "source": "zhejiang",
+      "id": "铁路_边线",
+      "paint": { "line-color": "#AAAAAA", "line-width": 2.2 },
+      "source-layer": "tra_lrr_ln"
+    },
+    {
+      "minzoom": 9,
+      "layout": { "line-join": "round", "line-cap": "round" },
+      "metadata": { "zhejiang:groups": "铁路线" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        ["all", ["!in", "fcode", "4301011314", "4301012314"]]
+      ],
+      "type": "line",
+      "source": "zhejiang",
+      "id": "铁路",
+      "paint": { "line-color": "#fefefe", "line-width": 1.6, "line-dasharray": [6, 8] },
+      "source-layer": "tra_lrr_ln"
+    },
+    {
+      "id": "栈道、内部道路、机耕路、乡村路、小路_边线",
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "ref": "栈道、内部道路、机耕路、乡村路、小路",
+      "paint": {
+        "line-color": "rgba(220, 210, 173, 1)",
+        "line-width": { "stops": [[15, 2.4], [16, 3], [17, 4], [19, 5]] }
+      }
+    },
+    {
+      "id": "乡道、支线、专用公路、其他公路、村道_边线",
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "ref": "乡道、支线、专用公路、其他公路、村道",
+      "paint": {
+        "line-color": "rgba(200, 191, 161, 1)",
+        "line-width": { "stops": [[15, 4.6], [16, 6], [17, 8], [18, 9]] }
+      }
+    },
+    {
+      "id": "县道、次干道_边线",
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "minzoom": 10,
+      "ref": "县道、次干道",
+      "paint": {
+        "line-width": { "stops": [[9.9, 0], [10, 3.4], [11, 3.4], [12, 4.4], [13, 5], [18, 11]] },
+        "line-color": {
+          "stops": [[11, "rgba(209, 202, 175, 1)"], [14, "rgba(209, 202, 175, 1)"], [15, "rgba(214, 200, 120, 1)"]]
+        },
+        "line-offset": 0
+      }
+    },
+    {
+      "id": "省道、主干道_边线",
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "minzoom": 9,
+      "ref": "省道、主干道",
+      "paint": {
+        "line-width": { "stops": [[8.9, 0], [9, 2.4], [10, 2.4], [11, 4.6], [12, 5.4], [13, 7], [18, 12]] },
+        "line-color": {
+          "stops": [[10, "rgba(198, 133, 78, 1)"], [11, "rgba(200, 191, 161, 1)"], [15, "rgba(214, 185, 90, 1)"]]
+        },
+        "line-offset": 0
+      }
+    },
+    {
+      "interactive": true,
+      "minzoom": 10,
+      "layout": { "line-cap": "round", "line-join": "round", "visibility": "visible" },
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        [
+          "all",
+          [
+            "in",
+            "display",
+            "4406000314",
+            "4306000313",
+            "4401000313",
+            "4401000311",
+            "4402000314",
+            "4402000313",
+            "4403000314"
+          ]
+        ]
+      ],
+      "type": "line",
+      "source": "zhejiang",
+      "id": "栈道、内部道路、机耕路、乡村路、小路",
+      "paint": {
+        "line-color": "rgba(254, 254, 254, 1)",
+        "line-width": { "stops": [[15, 1.8], [16, 2], [17, 3], [19, 4]] }
+      },
+      "source-layer": "tra_net_ln"
+    },
+    {
+      "interactive": true,
+      "minzoom": 10,
+      "layout": { "line-cap": "round", "line-join": "round", "visibility": "visible" },
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        [
+          "all",
+          [
+            "in",
+            "display",
+            "4204000313",
+            "4204010313",
+            "4305030313",
+            "4305040313",
+            "4205000313",
+            "4205010313",
+            "4209000313",
+            "4209010313",
+            "4208000313",
+            "4208000313"
+          ]
+        ]
+      ],
+      "type": "line",
+      "source": "zhejiang",
+      "id": "乡道、支线、专用公路、其他公路、村道",
+      "paint": {
+        "line-color": "rgba(254, 254, 254, 1)",
+        "line-width": { "stops": [[15, 2.6], [16, 4], [17, 6], [18, 7]] }
+      },
+      "source-layer": "tra_net_ln"
+    },
+    {
+      "interactive": true,
+      "minzoom": 7,
+      "layout": { "line-cap": "round", "line-join": "round" },
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        ["any", ["in", "display", "4203010313", "4203020313", "4305020313", "4205000313", "4205010313"]]
+      ],
+      "type": "line",
+      "source": "zhejiang",
+      "id": "县道、次干道",
+      "paint": {
+        "line-width": { "stops": [[9, 1], [10, 1.4], [11, 1.4], [12, 2.4], [13, 3], [18, 9]] },
+        "line-color": {
+          "stops": [
+            [10, "rgba(255, 244, 175, 1)"],
+            [14, "rgba(255, 244, 175, 1)"],
+            [15, "rgba(255, 244, 140, 1)"],
+            [16, "rgba(254, 240, 145, 1)"]
+          ]
+        },
+        "line-offset": 0
+      },
+      "source-layer": "tra_net_ln"
+    },
+    {
+      "interactive": true,
+      "minzoom": 7,
+      "layout": { "visibility": "visible", "line-cap": "butt", "line-join": "round" },
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        ["any", ["in", "display", "4202010313", "4202020313", "4305010313"]]
+      ],
+      "type": "line",
+      "source": "zhejiang",
+      "id": "省道、主干道",
+      "paint": {
+        "line-width": { "stops": [[8, 1], [9, 1.5], [10, 2], [11, 2.6], [12, 3.4], [13, 5], [18, 10]] },
+        "line-color": {
+          "stops": [
+            [10, "rgba(255, 244, 175, 1)"],
+            [11, "rgba(254, 240, 158, 1)"],
+            [15, "rgba(254, 240, 158, 1)"],
+            [16, "rgba(254, 235, 130, 1)"]
+          ]
+        },
+        "line-offset": 0
+      },
+      "source-layer": "tra_net_ln"
+    },
+    {
+      "interactive": true,
+      "minzoom": 10,
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "id": "国道、快速路_边线",
+      "ref": "国道、快速路",
+      "paint": {
+        "line-color": {
+          "stops": [
+            [10, "rgba(198, 133, 78, 1)"],
+            [11, "rgba(208, 143, 88, 1)"],
+            [14, "rgba(208, 143, 88, 1)"],
+            [15, "rgba(196, 124, 73, 1)"],
+            [16, "rgba(176, 98, 55, 1)"]
+          ]
+        },
+        "line-width": { "stops": [[10.9, 0], [11, 4], [12, 6], [19, 14]] }
+      }
+    },
+    {
+      "interactive": true,
+      "minzoom": 7,
+      "layout": { "line-cap": "round", "line-join": "round" },
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        ["any", ["in", "display", "4201010313", "4201020313", "4302000414", "4303000313"]]
+      ],
+      "type": "line",
+      "source": "zhejiang",
+      "id": "国道、快速路",
+      "paint": {
+        "line-color": {
+          "stops": [
+            [8, "rgba(255, 215, 140, 1)"],
+            [10, "rgba(255, 215, 140, 1)"],
+            [11, "rgba(254, 205, 120, 1)"],
+            [17, "rgba(254, 205, 120, 1)"],
+            [18, "rgba(254, 205, 110, 1)"]
+          ]
+        },
+        "line-width": { "stops": [[8, 1.2], [9, 1.4], [10, 2.2], [11, 3], [19, 12]] }
+      },
+      "source-layer": "tra_net_ln"
+    },
+    {
+      "interactive": true,
+      "minzoom": 10,
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "id": "高速公路_边线",
+      "ref": "高速公路",
+      "paint": {
+        "line-color": {
+          "stops": [
+            [11, "rgba(125, 89, 203, 1)"],
+            [14, "rgba(125, 89, 203, 1)"],
+            [15, "rgba(142, 97, 209, 1)"],
+            [16, "rgba(94, 55, 170, 1)"]
+          ]
+        },
+        "line-width": { "stops": [[10.9, 0], [11, 4.2], [12, 7], [17, 14], [19, 14]] }
+      }
+    },
+    {
+      "interactive": true,
+      "minzoom": 10,
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "id": "建筑中高速公路_边线",
+      "ref": "建筑中高速公路",
+      "paint": {
+        "line-color": {
+          "stops": [
+            [11, "rgba(125, 89, 203, 1)"],
+            [14, "rgba(125, 89, 203, 1)"],
+            [15, "rgba(142, 97, 209, 1)"],
+            [16, "rgba(94, 55, 170, 1)"]
+          ]
+        },
+        "line-width": { "stops": [[10.9, 0], [11, 4.2], [12, 7], [17, 14], [19, 14]] },
+        "line-dasharray": [10, 12]
+      }
+    },
+    {
+      "interactive": true,
+      "minzoom": 7,
+      "layout": { "line-cap": "round", "line-join": "round" },
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "filter": ["all", ["in", "$type", "Polygon", "LineString", "Point"], ["all", ["in", "display", "4200010313"]]],
+      "type": "line",
+      "source": "zhejiang",
+      "id": "高速公路",
+      "paint": {
+        "line-color": {
+          "stops": [[5, "rgba(194, 159, 243, 1)"], [10, "rgba(194, 159, 243, 1)"], [11, "rgba(186, 146, 241, 1)"]]
+        },
+        "line-width": { "stops": [[7, 1.5], [8, 1.8], [10, 2.7], [11, 3], [18, 10], [19, 12]] }
+      },
+      "source-layer": "tra_net_ln"
+    },
+    {
+      "interactive": true,
+      "minzoom": 7,
+      "layout": { "line-cap": "round", "line-join": "round" },
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "filter": ["all", ["in", "$type", "Polygon", "LineString", "Point"], ["all", ["in", "display", "4200020313"]]],
+      "type": "line",
+      "source": "zhejiang",
+      "id": "建筑中高速公路",
+      "paint": {
+        "line-color": {
+          "stops": [[5, "rgba(194, 159, 243, 1)"], [10, "rgba(194, 159, 243, 1)"], [11, "rgba(186, 146, 241, 1)"]]
+        },
+        "line-width": { "stops": [[7, 1.5], [8, 1.8], [10, 2.7], [11, 3], [18, 10], [19, 12]] },
+        "line-dasharray": [10, 12]
+      },
+      "source-layer": "tra_net_ln"
+    },
+    {
+      "id": "栈道、内部道路、机耕路、乡村路、小路_辅助线_边线",
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "ref": "栈道、内部道路、机耕路、乡村路、小路_辅助线",
+      "paint": {
+        "line-color": "rgba(220, 210, 173, 1)",
+        "line-width": { "stops": [[15, 2.4], [16, 3], [17, 4], [19, 5]] }
+      }
+    },
+    {
+      "interactive": true,
+      "minzoom": 13,
+      "layout": { "line-cap": "butt", "line-join": "round", "visibility": "visible" },
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        [
+          "all",
+          [
+            "in",
+            "display",
+            "4406000314",
+            "4306000313",
+            "4401000313",
+            "4401000311",
+            "4402000314",
+            "4402000313",
+            "4403000314"
+          ]
+        ]
+      ],
+      "type": "line",
+      "source": "zhejiang",
+      "id": "栈道、内部道路、机耕路、乡村路、小路_辅助线",
+      "paint": {
+        "line-color": "rgba(254, 254, 254, 1)",
+        "line-width": { "stops": [[15, 1.8], [16, 2], [17, 3], [19, 4]] }
+      },
+      "source-layer": "asst_ln"
+    },
+    {
+      "id": "乡道、支线、专用公路、其他公路、村道_辅助线_边线",
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "ref": "乡道、支线、专用公路、其他公路、村道_辅助线",
+      "paint": {
+        "line-color": "rgba(200, 191, 161, 1)",
+        "line-width": { "stops": [[15, 4.6], [16, 6], [17, 8], [18, 9]] }
+      }
+    },
+    {
+      "interactive": true,
+      "minzoom": 13,
+      "layout": { "line-cap": "butt", "line-join": "round", "visibility": "visible" },
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        [
+          "all",
+          [
+            "in",
+            "display",
+            "4204000313",
+            "4204010313",
+            "4305030313",
+            "4305040313",
+            "4205000313",
+            "4205010313",
+            "4209000313",
+            "4209010313",
+            "4208000313",
+            "4208000313"
+          ]
+        ]
+      ],
+      "type": "line",
+      "source": "zhejiang",
+      "id": "乡道、支线、专用公路、其他公路、村道_辅助线",
+      "paint": {
+        "line-color": "rgba(254, 254, 254, 1)",
+        "line-width": { "stops": [[15, 2.6], [16, 4], [17, 6], [18, 7]] }
+      },
+      "source-layer": "asst_ln"
+    },
+    {
+      "id": "县道、次干道_辅助线_边线",
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "minzoom": 13,
+      "ref": "县道、次干道_辅助线",
+      "paint": {
+        "line-width": { "stops": [[12.9, 0], [13, 5], [18, 11]] },
+        "line-color": {
+          "stops": [[11, "rgba(209, 202, 175, 1)"], [14, "rgba(209, 202, 175, 1)"], [15, "rgba(214, 200, 120, 1)"]]
+        },
+        "line-offset": 0
+      }
+    },
+    {
+      "interactive": true,
+      "minzoom": 13,
+      "layout": { "line-cap": "butt", "line-join": "round" },
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        ["any", ["in", "display", "4203010313", "4203020313", "4305020313", "4205000313", "4205010313"]]
+      ],
+      "type": "line",
+      "source": "zhejiang",
+      "id": "县道、次干道_辅助线",
+      "paint": {
+        "line-width": { "stops": [[12.9, 0], [13, 3], [18, 9]] },
+        "line-color": {
+          "stops": [
+            [10, "rgba(255, 244, 175, 1)"],
+            [14, "rgba(255, 244, 175, 1)"],
+            [15, "rgba(255, 244, 140, 1)"],
+            [16, "rgba(254, 240, 145, 1)"]
+          ]
+        },
+        "line-offset": 0
+      },
+      "source-layer": "asst_ln"
+    },
+    {
+      "id": "省道、主干道_辅助线_边线",
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "minzoom": 13,
+      "ref": "省道、主干道_辅助线",
+      "paint": {
+        "line-width": { "stops": [[12.9, 0], [13, 7], [18, 12]] },
+        "line-color": {
+          "stops": [[10, "rgba(198, 133, 78, 1)"], [11, "rgba(200, 191, 161, 1)"], [15, "rgba(214, 185, 90, 1)"]]
+        },
+        "line-offset": 0
+      }
+    },
+    {
+      "interactive": true,
+      "minzoom": 13,
+      "layout": { "visibility": "visible", "line-cap": "butt", "line-join": "round" },
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        ["any", ["in", "display", "4202010313", "4202020313", "4305010313"]]
+      ],
+      "type": "line",
+      "source": "zhejiang",
+      "id": "省道、主干道_辅助线",
+      "paint": {
+        "line-width": { "stops": [[12.9, 0], [13, 5], [18, 10]] },
+        "line-color": {
+          "stops": [
+            [10, "rgba(255, 244, 175, 1)"],
+            [11, "rgba(254, 240, 158, 1)"],
+            [15, "rgba(254, 240, 158, 1)"],
+            [16, "rgba(254, 235, 130, 1)"]
+          ]
+        },
+        "line-offset": 0
+      },
+      "source-layer": "asst_ln"
+    },
+    {
+      "interactive": true,
+      "minzoom": 10,
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "id": "国道、快速路_辅助线_边线",
+      "ref": "国道、快速路_辅助线",
+      "paint": {
+        "line-color": {
+          "stops": [
+            [10, "rgba(198, 133, 78, 1)"],
+            [11, "rgba(208, 143, 88, 1)"],
+            [14, "rgba(208, 143, 88, 1)"],
+            [15, "rgba(196, 124, 73, 1)"],
+            [16, "rgba(176, 98, 55, 1)"]
+          ]
+        },
+        "line-width": { "stops": [[10.9, 0], [11, 4], [12, 6], [19, 14]] }
+      }
+    },
+    {
+      "interactive": true,
+      "minzoom": 13,
+      "layout": { "line-cap": "butt", "line-join": "round" },
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        ["any", ["in", "display", "4201010313", "4201020313", "4302000414", "4303000313"]]
+      ],
+      "type": "line",
+      "source": "zhejiang",
+      "id": "国道、快速路_辅助线",
+      "paint": {
+        "line-color": {
+          "stops": [
+            [8, "rgba(255, 215, 140, 1)"],
+            [10, "rgba(255, 215, 140, 1)"],
+            [11, "rgba(254, 205, 120, 1)"],
+            [17, "rgba(254, 205, 120, 1)"],
+            [18, "rgba(254, 205, 110, 1)"]
+          ]
+        },
+        "line-width": { "stops": [[8, 1.2], [9, 1.4], [10, 2.2], [11, 3], [19, 12]] }
+      },
+      "source-layer": "asst_ln"
+    },
+    {
+      "interactive": true,
+      "minzoom": 13,
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "id": "高速公路_辅助线_边线",
+      "ref": "高速公路_辅助线",
+      "paint": {
+        "line-color": {
+          "stops": [
+            [11, "rgba(125, 89, 203, 1)"],
+            [14, "rgba(125, 89, 203, 1)"],
+            [15, "rgba(142, 97, 209, 1)"],
+            [16, "rgba(94, 55, 170, 1)"]
+          ]
+        },
+        "line-width": { "stops": [[10.9, 0], [11, 4.2], [12, 7], [17, 14], [19, 14]] }
+      }
+    },
+    {
+      "interactive": true,
+      "minzoom": 13,
+      "layout": { "line-cap": "butt", "line-join": "round" },
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "filter": ["all", ["in", "$type", "Polygon", "LineString", "Point"], ["all", ["in", "display", "4200010313"]]],
+      "type": "line",
+      "source": "zhejiang",
+      "id": "高速公路_辅助线",
+      "paint": {
+        "line-color": {
+          "stops": [[5, "rgba(194, 159, 243, 1)"], [10, "rgba(194, 159, 243, 1)"], [11, "rgba(186, 146, 241, 1)"]]
+        },
+        "line-width": { "stops": [[7, 1.5], [8, 1.8], [10, 2.7], [11, 3], [18, 10], [19, 12]] }
+      },
+      "source-layer": "asst_ln"
+    },
+    {
+      "interactive": true,
+      "minzoom": 13,
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "id": "建筑中高速公路_辅助线_边线",
+      "ref": "建筑中高速公路_辅助线",
+      "paint": {
+        "line-color": {
+          "stops": [
+            [11, "rgba(125, 89, 203, 1)"],
+            [14, "rgba(125, 89, 203, 1)"],
+            [15, "rgba(142, 97, 209, 1)"],
+            [16, "rgba(94, 55, 170, 1)"]
+          ]
+        },
+        "line-width": { "stops": [[10.9, 0], [11, 4.2], [12, 7], [17, 14], [19, 14]] },
+        "line-dasharray": [10, 12]
+      }
+    },
+    {
+      "interactive": true,
+      "minzoom": 13,
+      "layout": { "line-cap": "butt", "line-join": "round" },
+      "metadata": { "zhejiang:groups": "交通网线" },
+      "filter": ["all", ["in", "$type", "Polygon", "LineString", "Point"], ["all", ["in", "display", "4200020313"]]],
+      "type": "line",
+      "source": "zhejiang",
+      "id": "建筑中高速公路_辅助线",
+      "paint": {
+        "line-color": {
+          "stops": [[5, "rgba(194, 159, 243, 1)"], [10, "rgba(194, 159, 243, 1)"], [11, "rgba(186, 146, 241, 1)"]]
+        },
+        "line-width": { "stops": [[7, 1.5], [8, 1.8], [10, 2.7], [11, 3], [18, 10], [19, 12]] },
+        "line-dasharray": [10, 12]
+      },
+      "source-layer": "asst_ln"
+    },
+    {
+      "minzoom": 13,
+      "layout": { "line-join": "round", "line-cap": "round" },
+      "metadata": { "zhejiang:groups": "铁路线" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        ["all", ["in", "fcode", "4301011314", "4301012314"]]
+      ],
+      "type": "line",
+      "source": "zhejiang",
+      "id": "地铁",
+      "paint": { "line-color": "#ff0000", "line-width": 1.5 },
+      "source-layer": "tra_lrr_ln"
+    },
+    {
+      "interactive": true,
+      "minzoom": 13,
+      "layout": {
+        "text-size": 11,
+        "text-allow-overlap": false,
+        "icon-text-fit": "both",
+        "icon-image": "ic_map_shengway",
+        "icon-rotation-alignment": "viewport",
+        "icon-text-fit-padding": [2, 2, 2, 2],
+        "text-ignore-placement": false,
+        "text-max-angle": 45,
+        "symbol-spacing": 500,
+        "text-font": ["Arial Unicode MS Bold"],
+        "symbol-placement": "point",
+        "text-padding": 1,
+        "text-rotation-alignment": "viewport",
+        "text-pitch-alignment": "viewport",
+        "text-keep-upright": true,
+        "text-field": "{roadcode}",
+        "icon-padding": { "stops": [[7, 20], [11, 20], [12, 60]] }
+      },
+      "metadata": { "zhejiang:groups": "交通网线注记" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        ["all", ["in", "fcode", "4202010313", "4202020313"], ["has", "roadcode"]]
+      ],
+      "type": "symbol",
+      "source": "zhejiang",
+      "id": "省道编码",
+      "paint": {
+        "icon-color": "rgba(253, 183, 72, 1)",
+        "text-color": "rgba(255, 255, 255, 1)",
+        "text-halo-color": "rgba(255, 255, 255, 0.8)",
+        "text-halo-width": 0.1
+      },
+      "source-layer": "tra_net_ln"
+    },
+    {
+      "interactive": true,
+      "minzoom": 13,
+      "layout": {
+        "text-size": 11,
+        "text-allow-overlap": false,
+        "icon-text-fit": "both",
+        "icon-image": "ic_map_guodao",
+        "icon-rotation-alignment": "viewport",
+        "icon-text-fit-padding": [2, 2, 2, 2],
+        "text-ignore-placement": false,
+        "text-max-angle": 45,
+        "symbol-spacing": 500,
+        "text-font": ["Arial Unicode MS Bold"],
+        "symbol-placement": "point",
+        "text-padding": 1,
+        "text-rotation-alignment": "viewport",
+        "text-pitch-alignment": "viewport",
+        "text-keep-upright": true,
+        "text-field": "{roadcode}",
+        "icon-padding": { "stops": [[7, 20], [11, 20], [12, 20]] }
+      },
+      "metadata": { "zhejiang:groups": "交通网线注记" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        ["all", ["in", "fcode", "4201010313", "4201020313", "4302000414", "4303000313"], ["has", "roadcode"]]
+      ],
+      "type": "symbol",
+      "source": "zhejiang",
+      "id": "国道、快速路编码",
+      "paint": {
+        "icon-color": "rgba(248, 126, 53, 1)",
+        "text-color": "rgba(255, 255, 255, 1)",
+        "text-halo-color": "rgba(255, 255, 255, 0.8)",
+        "text-halo-width": 0.1
+      },
+      "source-layer": "tra_net_ln"
+    },
+    {
+      "interactive": true,
+      "minzoom": 7,
+      "layout": {
+        "text-size": 11,
+        "text-allow-overlap": false,
+        "icon-text-fit": "both",
+        "icon-image": "ic_map_highway",
+        "icon-rotation-alignment": "viewport",
+        "icon-text-fit-padding": [2, 4, 2, 4],
+        "text-ignore-placement": false,
+        "text-max-angle": 45,
+        "symbol-spacing": 500,
+        "text-font": ["Arial Unicode MS Bold"],
+        "symbol-placement": "point",
+        "text-padding": 1,
+        "text-rotation-alignment": "viewport",
+        "text-pitch-alignment": "viewport",
+        "text-keep-upright": true,
+        "text-field": "{roadcode}",
+        "icon-padding": { "stops": [[7, 20], [11, 20], [12, 20]] }
+      },
+      "metadata": { "zhejiang:groups": "交通网线注记" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        ["all", ["in", "fcode", "4200010313", "4200020313"], ["has", "roadcode"]]
+      ],
+      "type": "symbol",
+      "source": "zhejiang",
+      "id": "高速路编码",
+      "paint": {
+        "icon-color": "rgba(165, 102, 251, 1)",
+        "text-color": "rgba(255, 255, 255, 1)",
+        "text-halo-color": "rgba(255, 255, 255, 0.8)",
+        "text-halo-width": 0.1
+      },
+      "source-layer": "tra_net_ln"
+    },
+    {
+      "interactive": true,
+      "minzoom": 16,
+      "layout": {
+        "text-size": { "stops": [[14, 11], [15, 12]] },
+        "text-allow-overlap": false,
+        "icon-rotation-alignment": "viewport",
+        "text-ignore-placement": false,
+        "text-max-angle": 45,
+        "symbol-spacing": 800,
+        "text-font": ["Arial Unicode MS Bold"],
+        "symbol-placement": "line",
+        "text-padding": 1,
+        "text-rotation-alignment": "map",
+        "text-pitch-alignment": "viewport",
+        "text-keep-upright": true,
+        "text-field": "{fname}"
+      },
+      "metadata": { "zhejiang:groups": "交通网线注记" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        [
+          "all",
+          [
+            "in",
+            "display",
+            "4204000313",
+            "4204010313",
+            "4305030313",
+            "4305040313",
+            "4205000313",
+            "4205010313",
+            "4209000313",
+            "4209010313",
+            "4208000313",
+            "4208000313"
+          ]
+        ]
+      ],
+      "type": "symbol",
+      "source": "zhejiang",
+      "id": "乡道、专用道路名称注记",
+      "paint": {
+        "text-color": "rgba(104, 54, 13, 1)",
+        "text-halo-color": "rgba(255, 255, 255, 1)",
+        "text-halo-width": { "stops": [[16, 1], [17, 2]] }
+      },
+      "source-layer": "tra_net_ln"
+    },
+    {
+      "interactive": true,
+      "minzoom": 16,
+      "layout": {
+        "text-size": { "stops": [[14, 11], [15, 12]] },
+        "text-allow-overlap": false,
+        "icon-rotation-alignment": "viewport",
+        "text-ignore-placement": false,
+        "text-max-angle": 45,
+        "symbol-spacing": 800,
+        "text-font": ["Arial Unicode MS Bold"],
+        "symbol-placement": "line",
+        "text-padding": 1,
+        "text-rotation-alignment": "map",
+        "text-pitch-alignment": "viewport",
+        "text-keep-upright": true,
+        "text-field": "{fname}"
+      },
+      "metadata": { "zhejiang:groups": "交通网线注记" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        [
+          "all",
+          [
+            "in",
+            "display",
+            "4406000314",
+            "4306000313",
+            "4401000313",
+            "4401000311",
+            "4402000314",
+            "4402000313",
+            "4403000314"
+          ]
+        ]
+      ],
+      "type": "symbol",
+      "source": "zhejiang",
+      "id": "内部道路名称注记",
+      "paint": {
+        "text-color": "rgba(104, 54, 13, 1)",
+        "text-halo-color": "rgba(255, 255, 255, 1)",
+        "text-halo-width": { "stops": [[16, 1], [17, 2]] }
+      },
+      "source-layer": "tra_net_ln"
+    },
+    {
+      "interactive": true,
+      "minzoom": 14,
+      "layout": {
+        "text-size": { "stops": [[14, 11], [15, 12]] },
+        "text-allow-overlap": false,
+        "icon-rotation-alignment": "viewport",
+        "text-ignore-placement": false,
+        "text-max-angle": 45,
+        "symbol-spacing": 800,
+        "text-font": ["Arial Unicode MS Bold"],
+        "symbol-placement": "line",
+        "text-padding": 1,
+        "text-rotation-alignment": "map",
+        "text-pitch-alignment": "viewport",
+        "text-keep-upright": true,
+        "text-field": "{fname}"
+      },
+      "metadata": { "zhejiang:groups": "交通网线注记" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        ["all", ["in", "display", "4203010313", "4203020313", "4305020313", "4205000313", "4205010313"]]
+      ],
+      "type": "symbol",
+      "source": "zhejiang",
+      "id": "县道、次干道名称注记",
+      "paint": {
+        "text-color": "rgba(104, 54, 13, 1)",
+        "text-halo-color": { "stops": [[14, "rgba(255, 255, 255,1)"], [15, "rgba(255, 244, 130,1)"]] },
+        "text-halo-width": { "stops": [[16, 1], [17, 2]] }
+      },
+      "source-layer": "tra_net_ln"
+    },
+    {
+      "interactive": true,
+      "minzoom": 14,
+      "layout": {
+        "text-size": { "stops": [[12, 11], [13, 12]] },
+        "text-allow-overlap": false,
+        "icon-rotation-alignment": "viewport",
+        "text-ignore-placement": false,
+        "text-max-angle": 45,
+        "symbol-spacing": 800,
+        "text-font": ["Arial Unicode MS Bold"],
+        "symbol-placement": "line",
+        "text-padding": 1,
+        "text-rotation-alignment": "map",
+        "text-pitch-alignment": "viewport",
+        "text-keep-upright": true,
+        "text-field": "{fname}"
+      },
+      "metadata": { "zhejiang:groups": "交通网线注记" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        ["all", ["in", "display", "4202010313", "4202020313", "4305010313"]]
+      ],
+      "type": "symbol",
+      "source": "zhejiang",
+      "id": "省道、主干道名称注记",
+      "paint": {
+        "text-color": "rgba(104, 54, 13, 1)",
+        "text-halo-color": "rgba(255, 255, 255, 1)",
+        "text-halo-width": { "stops": [[12, 1], [13, 2]] }
+      },
+      "source-layer": "tra_net_ln"
+    },
+    {
+      "interactive": true,
+      "minzoom": 12,
+      "layout": {
+        "text-size": { "stops": [[10, 11], [11, 13], [12, 14]] },
+        "text-allow-overlap": false,
+        "icon-rotation-alignment": "viewport",
+        "text-ignore-placement": false,
+        "text-max-angle": 45,
+        "symbol-spacing": 500,
+        "text-font": ["Arial Unicode MS Bold"],
+        "symbol-placement": "line",
+        "text-padding": { "stops": [[13, 3], [14, 4]] },
+        "text-rotation-alignment": "map",
+        "text-pitch-alignment": "viewport",
+        "text-keep-upright": true,
+        "text-field": "{fname}"
+      },
+      "metadata": { "zhejiang:groups": "交通网线注记" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        ["all", ["in", "fcode", "4201010313", "4201020313", "4302000414", "4303000313"]]
+      ],
+      "type": "symbol",
+      "source": "zhejiang",
+      "id": "国道、快速路名称注记",
+      "paint": {
+        "text-color": {
+          "stops": [
+            [11, "rgba(134, 70, 17, 1)"],
+            [13, "rgba(134, 70, 17, 1)"],
+            [14, "rgba(104, 54, 13, 1)"],
+            [16, "rgba(104, 54, 13, 1)"],
+            [17, "rgba(70, 35, 7, 1)"],
+            [18, "rgba(70, 35, 7, 1)"]
+          ]
+        },
+        "text-halo-color": {
+          "stops": [[11, "rgba(255, 231, 159,1)"], [13, "rgba(255, 231, 159,1)"], [14, "rgba(255, 222, 102,1)"]]
+        },
+        "text-halo-width": { "stops": [[10, 1], [12, 2]] }
+      },
+      "source-layer": "tra_net_ln"
+    },
+    {
+      "interactive": true,
+      "minzoom": 7,
+      "layout": {
+        "text-size": { "stops": [[10, 11], [11, 13], [12, 14]] },
+        "text-allow-overlap": false,
+        "icon-rotation-alignment": "viewport",
+        "text-ignore-placement": false,
+        "text-max-angle": 45,
+        "symbol-spacing": 500,
+        "text-font": ["Arial Unicode MS Bold"],
+        "symbol-placement": "line",
+        "text-padding": { "stops": [[10, 1], [11, 2]] },
+        "text-rotation-alignment": "map",
+        "text-pitch-alignment": "viewport",
+        "text-keep-upright": true,
+        "text-field": "{fname}"
+      },
+      "metadata": { "zhejiang:groups": "交通网线注记" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        ["all", ["in", "fcode", "4200010313", "4200020313"]]
+      ],
+      "type": "symbol",
+      "source": "zhejiang",
+      "id": "高速路名称注记",
+      "paint": {
+        "text-color": "rgba(87, 30, 145, 1)",
+        "text-halo-color": "rgba(255, 255, 255, 0.8)",
+        "text-halo-width": { "stops": [[10, 2], [11, 1], [12, 2]] }
+      },
+      "source-layer": "tra_net_ln"
+    },
+    {
+      "interactive": true,
+      "minzoom": 14,
+      "layout": {
+        "text-size": 12.5,
+        "text-allow-overlap": false,
+        "icon-rotation-alignment": "viewport",
+        "text-ignore-placement": false,
+        "text-max-angle": 45,
+        "symbol-spacing": 800,
+        "text-font": ["Arial Unicode MS Bold"],
+        "symbol-placement": "line",
+        "text-rotation-alignment": "map",
+        "text-pitch-alignment": "viewport",
+        "text-keep-upright": true,
+        "text-field": "{fname}"
+      },
+      "metadata": { "zhejiang:groups": "交通网线注记" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        ["all", ["in", "fcode", "4301011314", "4301012314"]]
+      ],
+      "type": "symbol",
+      "source": "zhejiang",
+      "id": "地铁名称注记",
+      "paint": {
+        "text-color": "rgba(252, 77, 36, 1)",
+        "text-halo-width": 2,
+        "text-halo-color": "rgba(255, 255, 255, 1)"
+      },
+      "source-layer": "tra_lrr_ln"
+    },
+    {
+      "interactive": true,
+      "minzoom": 7,
+      "layout": {
+        "text-size": 13,
+        "icon-rotation-alignment": "viewport",
+        "symbol-spacing": 700,
+        "symbol-placement": "line",
+        "text-justify": "center",
+        "visibility": "visible",
+        "text-rotation-alignment": "map",
+        "text-anchor": "center",
+        "text-pitch-alignment": "viewport",
+        "text-field": ["to-string", ["get", "fname"]]
+      },
+      "metadata": { "zhejiang:groups": "水系注记" },
+      "filter": ["all", ["in", "$type", "Polygon", "LineString", "Point"], ["all", ["in", "fcode", "2614010999"]]],
+      "type": "symbol",
+      "source": "zhejiang",
+      "id": "河流注记",
+      "paint": {
+        "text-color": "rgba(14, 122, 173, 1)",
+        "text-halo-width": 2,
+        "text-halo-color": "rgba(255, 255, 255, 1)"
+      },
+      "source-layer": "hyd_net_ln"
+    },
+    {
+      "interactive": true,
+      "minzoom": 10,
+      "layout": {
+        "symbol-placement": "line",
+        "visibility": "visible",
+        "text-field": "{fname}",
+        "text-size": 12,
+        "text-padding": 20,
+        "text-rotation-alignment": "viewport",
+        "text-pitch-alignment": "viewport"
+      },
+      "metadata": { "zhejiang:groups": "水系注记" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        ["all", ["in", "fcode", "2301010330", "2401010330", "2507020330", "2507030330"]]
+      ],
+      "type": "symbol",
+      "source": "zhejiang",
+      "id": "湖泊、水库_注记",
+      "paint": {
+        "text-color": "rgba(14, 122, 173, 1)",
+        "text-halo-color": "rgba(255, 255, 255, 1)",
+        "text-halo-width": 2
+      },
+      "source-layer": "hyd_ln"
+    },
+    {
+      "interactive": true,
+      "minzoom": 7,
+      "layout": {
+        "symbol-placement": "line",
+        "visibility": "visible",
+        "text-field": "{fname}",
+        "text-size": 13,
+        "text-padding": 20,
+        "text-rotation-alignment": "viewport",
+        "text-pitch-alignment": "viewport"
+      },
+      "metadata": { "zhejiang:groups": "水系注记" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        ["all", ["in", "fcode", "2501000330", "2501010330", "2501020330", "2501030330"]]
+      ],
+      "type": "symbol",
+      "source": "zhejiang",
+      "id": "海域_注记",
+      "paint": {
+        "text-color": "rgba(14, 122, 173, 1)",
+        "text-halo-color": "rgba(255, 255, 255, 1)",
+        "text-halo-width": 2.2
+      },
+      "source-layer": "hyd_ln"
+    },
+    {
+      "interactive": true,
+      "minzoom": 8,
+      "layout": {
+        "text-size": 12,
+        "icon-image": "山尖",
+        "icon-rotation-alignment": "viewport",
+        "symbol-placement": "point",
+        "text-justify": "left",
+        "text-padding": 4,
+        "text-offset": [0.6, 0],
+        "text-rotation-alignment": "viewport",
+        "text-anchor": "left",
+        "text-pitch-alignment": "viewport",
+        "text-field": "{fname}"
+      },
+      "metadata": { "zhejiang:groups": "居民地点" },
+      "filter": ["all", ["in", "$type", "Polygon", "LineString", "Point"], ["all", ["in", "fcode", "7512020106"]]],
+      "type": "symbol",
+      "source": "zhejiang",
+      "id": "山峰_注记",
+      "paint": {
+        "text-color": "rgba(80, 80, 80, 1)",
+        "text-halo-color": "rgba(255, 255, 255, 1)",
+        "text-halo-width": 1.5
+      },
+      "source-layer": "res_pt"
+    },
+    {
+      "interactive": true,
+      "minzoom": 10,
+      "layout": {
+        "text-size": 11,
+        "icon-text-fit": "both",
+        "icon-rotation-alignment": "viewport",
+        "icon-text-fit-padding": [3, 3, 3, 3],
+        "symbol-placement": "point",
+        "text-padding": 4,
+        "text-rotation-alignment": "viewport",
+        "text-pitch-alignment": "viewport",
+        "text-field": "{fname}"
+      },
+      "metadata": { "zhejiang:groups": "居民地点" },
+      "filter": [
+        "all",
+        ["in", "$type", "Polygon", "LineString", "Point"],
+        ["all", ["!in", "fcode", "3111020106", "3111030106", "3111040106", "3111050106", "7512020106"]]
+      ],
+      "type": "symbol",
+      "source": "zhejiang",
+      "id": "自然村_注记",
+      "paint": { "text-color": "#737316", "text-halo-color": "rgba(255,255,255,0.8)", "text-halo-width": 1 },
+      "source-layer": "res_pt"
+    },
+    {
+      "interactive": true,
+      "minzoom": 8,
+      "layout": {
+        "text-size": 12,
+        "text-allow-overlap": true,
+        "icon-image": "乡政府",
+        "icon-rotation-alignment": "viewport",
+        "text-font": ["Arial Unicode MS Blod", "Open Sans Regular"],
+        "symbol-placement": "point",
+        "text-justify": "left",
+        "text-padding": 2,
+        "text-offset": [0.4, 0],
+        "text-rotation-alignment": "viewport",
+        "text-anchor": "left",
+        "text-pitch-alignment": "viewport",
+        "text-field": "{fname}",
+        "icon-padding": 2,
+        "text-max-width": 8
+      },
+      "metadata": { "zhejiang:groups": "居民地点" },
+      "maxzoom": 20,
+      "filter": ["all", ["in", "$type", "Polygon", "LineString", "Point"], ["all", ["in", "fcode", "3111050106"]]],
+      "type": "symbol",
+      "source": "zhejiang",
+      "id": "乡级政府_注记",
+      "paint": {
+        "text-color": "rgba(65,65, 65, 0.8)",
+        "text-halo-color": "rgba(255,255,255,1)",
+        "text-halo-width": { "stops": [[15, 2], [15, 2]] }
+      },
+      "source-layer": "res_pt"
+    },
+    {
+      "interactive": true,
+      "minzoom": 8,
+      "layout": {
+        "text-size": 12,
+        "text-allow-overlap": true,
+        "icon-text-fit": "both",
+        "icon-image": "ic_map_dijishi",
+        "icon-rotation-alignment": "viewport",
+        "icon-text-fit-padding": [2, 2, 2, 2],
+        "text-font": ["Arial Unicode MS Blod", "Open Sans Regular"],
+        "text-justify": "left",
+        "text-padding": 4,
+        "text-offset": [0, 0],
+        "text-rotation-alignment": "viewport",
+        "icon-size": 1,
+        "text-pitch-alignment": "viewport",
+        "text-field": ["to-string", ["get", "fname"]],
+        "icon-padding": 2,
+        "text-max-width": 8
+      },
+      "metadata": { "zhejiang:groups": "居民地点" },
+      "maxzoom": 20,
+      "filter": ["all", ["in", "$type", "Polygon", "LineString", "Point"], ["all", ["in", "fcode", "3111040106"]]],
+      "type": "symbol",
+      "source": "zhejiang",
+      "id": "县级政府_注记",
+      "paint": {
+        "text-color": "hsl(159.9999999999998, 0, 1)",
+        "text-halo-width": 0.1,
+        "text-halo-color": "hsl(160.00000000000006, 0, 0.9814)",
+        "text-translate": [0, -2],
+        "icon-translate": [0, 0]
+      },
+      "source-layer": "res_pt"
+    },
+    {
+      "interactive": true,
+      "minzoom": 7,
+      "layout": {
+        "text-size": 15,
+        "text-allow-overlap": true,
+        "icon-image": "市政府",
+        "icon-rotation-alignment": "viewport",
+        "text-font": ["Arial Unicode MS Blod", "Open Sans Regular"],
+        "symbol-placement": "point",
+        "text-justify": "left",
+        "text-padding": 4,
+        "text-offset": [0, 0.2],
+        "text-rotation-alignment": "viewport",
+        "text-anchor": "top",
+        "text-pitch-alignment": "viewport",
+        "text-field": ["to-string", ["get", "fname"]],
+        "text-max-width": 8
+      },
+      "metadata": { "zhejiang:groups": "居民地点" },
+      "maxzoom": 20,
+      "filter": ["all", ["in", "$type", "Polygon", "LineString", "Point"], ["all", ["in", "fcode", "3111030106"]]],
+      "type": "symbol",
+      "source": "zhejiang",
+      "id": "市级政府_注记",
+      "paint": {
+        "text-color": "rgba(65, 65, 65, 1)",
+        "text-halo-color": "rgba(255,255,255,0.8)",
+        "text-halo-width": 2
+      },
+      "source-layer": "res_pt"
+    },
+    {
+      "interactive": true,
+      "minzoom": 11,
+      "layout": {
+        "text-size": 13,
+        "icon-text-fit": "none",
+        "icon-image": "省政府",
+        "icon-rotation-alignment": "viewport",
+        "icon-text-fit-padding": [5, 5, 5, 5],
+        "text-font": ["Arial Unicode MS Blod", "Open Sans Regular"],
+        "text-justify": "left",
+        "text-padding": 4,
+        "text-offset": [0.5, 0],
+        "text-rotation-alignment": "viewport",
+        "text-anchor": "left",
+        "text-pitch-alignment": "viewport",
+        "text-field": "{fname}政府"
+      },
+      "metadata": { "zhejiang:groups": "居民地点" },
+      "maxzoom": 20,
+      "filter": ["all", ["in", "$type", "Polygon", "LineString", "Point"], ["all", ["in", "fcode", "3111020106"]]],
+      "type": "symbol",
+      "source": "zhejiang",
+      "id": "省政府_注记",
+      "paint": {
+        "text-color": "rgba(50, 50, 50, 1)",
+        "text-halo-width": 2,
+        "text-halo-color": "rgba(255, 255, 255, 1)",
+        "text-translate": [2, 0]
+      },
+      "source-layer": "res_pt"
+    },
+    {
+      "interactive": true,
+      "minzoom": 9,
+      "layout": {
+        "text-size": 12,
+        "icon-image": "{stylename}",
+        "icon-rotation-alignment": "viewport",
+        "text-justify": "left",
+        "text-padding": 2,
+        "text-offset": [0.6, 0],
+        "text-rotation-alignment": "viewport",
+        "text-anchor": "left",
+        "text-pitch-alignment": "viewport",
+        "text-keep-upright": false,
+        "text-field": "{name}",
+        "text-max-width": 8
+      },
+      "metadata": { "zhejiang:groups": "poi" },
+      "filter": ["all", ["in", "$type", "Polygon", "LineString", "Point"], ["all"]],
+      "type": "symbol",
+      "source": "zhejiang",
+      "id": "兴趣点-符号",
+      "paint": { "text-color": "#735139", "text-halo-color": "#ffffff", "text-halo-width": 1.5 },
+      "source-layer": "poi"
+    }
+  ],
+  "glyphs": "https://zjgis.cn/mapboxsprite/fonts/font/{fontstack}/{range}.pbf",
+  "name": "基本版",
+  "metadata": {
+    "zhejiang:autocomposite": true,
+    "mapbox:sdk-support": { "js": "0.45.0", "android": "6.0.0", "ios": "4.0.0" },
+    "zhejiang:type": "template",
+    "zhejiang:groups": {
+      "植被面": { "name": "植被面", "collapsed": true },
+      "交通网线": { "name": "交通网线", "collapsed": true },
+      "poi": { "name": "poi", "collapsed": true },
+      "交通网线注记": { "name": "交通网线注记", "collapsed": true },
+      "水系注记": { "name": "水系注记", "collapsed": true },
+      "铁路线": { "name": "铁路线", "collapsed": true },
+      "居民地点": { "name": "居民地点", "collapsed": false },
+      "境界线": { "name": "境界线", "collapsed": true },
+      "境界面": { "name": "境界面", "collapsed": true },
+      "水系面": { "name": "水系面", "collapsed": true },
+      "居民地面": { "name": "居民地面", "collapsed": true }
+    }
+  },
+  "zoom": 10,
+  "center": [120.140476, 30.267162],
+  "version": 8,
+  "sources": {
+    "zhejiang": { "type": "vector", "url": "http://112.124.97.99:8083/vectortiles/basemap/zhejiang" }
+  }
+}

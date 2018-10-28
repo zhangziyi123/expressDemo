@@ -1,0 +1,110 @@
+/** 颜色变量 **/
+@gray: #d2d6de;
+
+/** 变量 **/
+@screen-sm: 768px; // 窄屏
+@screen-sm-min: @screen-sm;
+
+@screen-md: 992px; // 中屏
+@screen-md-min: @screen-md;
+@screen-sm-max: (@screen-md-min - 1);
+
+@screen-lg: 1200px;
+@screen-lg-min: @screen-lg;
+@screen-lg-desktop: @screen-lg-min;
+
+/** 函数 **/
+.border-radius(@radius) {
+  border-radius: @radius;
+}
+
+@media (max-width: @screen-md-min) {
+  .content-wrapper {
+    /*overflow: auto;*/
+    background-color: #ecf0f3;
+    -webkit-transition: -webkit-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
+    -moz-transition: -moz-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
+    -o-transition: -o-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
+    margin-left: 0;
+    z-index: 820;
+  }
+}
+
+@media (min-width: @screen-md) {
+  .content-wrapper {
+    /*overflow: auto;*/
+    background-color: #ecf0f3;
+    -webkit-transition: -webkit-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
+    -moz-transition: -moz-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
+    -o-transition: -o-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
+    margin-left: 230px;
+    z-index: 820;
+  }
+}
+
+/*根据按钮控制右侧宽度和高度*/
+.content-wrapper {
+  /*margin-left: 230px;*/
+  height: 100%;
+  z-index: 820;
+  overflow-x: hidden;
+  // overflow-y: hidden;
+  background-color: #ecf0f5;
+}
+
+.content-header {
+  position: relative;
+  padding: 3px 15px 3px 15px;
+  // Header Text
+  > h1 {
+    margin: 0;
+    font-size: 24px;
+    > small {
+      font-size: 15px;
+      display: inline-block;
+      padding-left: 4px;
+      font-weight: 300;
+    }
+  }
+
+  > .breadcrumb {
+    float: right;
+    background: transparent;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    padding: 7px 5px;
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    .border-radius(2px);
+    > li > a {
+      color: #444;
+      text-decoration: none;
+      display: inline-block;
+      > .fa, > .glyphicon, > .ion {
+        margin-right: 5px;
+      }
+    }
+    > li + li:before {
+      content: '>\00a0';
+    }
+  }
+
+  @media (max-width: @screen-sm-max) {
+    > .breadcrumb {
+      position: relative;
+      margin-top: 5px;
+      top: 0;
+      right: 0;
+      float: none;
+      background: @gray;
+      padding-left: 10px;
+      li:before {
+        color: darken(@gray, 20%);
+      }
+    }
+  }
+}

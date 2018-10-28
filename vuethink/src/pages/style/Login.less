@@ -1,0 +1,200 @@
+/*登录样式*/
+.gis-login {
+  background: #162945;
+  background-size: cover;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-height: 100vh;
+  &-navbar {
+    background: #373d41 !important;
+    width: 100%;
+    height: 60px;
+    min-height: 60px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    a {
+      display: block;
+    }
+    a:hover {
+      color: #09f;
+      text-decoration: none;
+    }
+    &-left {
+      width: 700px;
+      float: left;
+    }
+    &-left-logo {
+      margin-left: 30px;
+      float: left;
+      line-height: 60px;
+      width: 160px;
+      text-align: center;
+    }
+    &-ul {
+      a {
+        color: #fff;
+      }
+      padding: 0;
+      margin: 0;
+      float: left;
+      li {
+        float: left;
+        padding: 0 14px;
+        line-height: 60px;
+      }
+    }
+    &-right {
+      width: 120px;
+      float: right;
+      a {
+        color: #fff;
+      }
+      ul {
+        padding: 0;
+        margin: 0;
+      }
+      li {
+        float: left;
+        padding: 0 14px;
+        height: 60px;
+        line-height: 60px;
+        font-size: 14px;
+      }
+    }
+
+    &-submenu {
+      position: absolute;
+      left: 0;
+      top: 60px;
+      z-index: 999;
+      width: 100%;
+      background: #272b2e;
+      /*display: none;*/
+      .sub-menu {
+        a {
+          color: #fff;
+        }
+        a:hover {
+          color: #09f;
+        }
+        display: none;
+        &:last-child dl dt {
+          margin: 0;
+          padding: 0;
+          border-bottom: none;
+        }
+        &-0 {
+          margin-left: 204px;
+        }
+        &-4 {
+          margin-left: 568px;
+        }
+        dl {
+          padding: 12.5px 30px 12.5px 0;
+          float: left;
+          dt {
+            color: #fff;
+            margin-top: 8px;
+            margin-bottom: 6px;
+            padding-bottom: 11px;
+            border-bottom: 1px solid #666;
+            font-weight: 600;
+          }
+          dd {
+            margin-bottom: 5px;
+            padding: 5px 0;
+          }
+        }
+      }
+    }
+  }
+  &-content {
+    display: flex;
+    flex-grow: 1;
+    background: #1f2325;
+    &-inner {
+      display: flex;
+      flex-grow: 1;
+      align-items: center;
+      justify-content: center;
+      .gis-row {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .gis-logo {
+        color: white;
+        text-align: center;
+        padding-bottom: 40px;
+        //&:hover{
+        //  font-size:20px;
+        //  transform: scale(1.05);
+        //  transition: 1s;
+        //}
+        //transition: 1s;
+      }
+    }
+  }
+  .gis-zjgis-footer {
+    text-align: center;
+    background: #373d41;
+    padding-top: 40px;
+    padding-bottom: 35px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    font-size: 12px;
+    span {
+      color: #fff;
+    }
+    a {
+      color: #fff;
+    }
+  }
+}
+.gis-logo {
+  .title {
+    a {
+      color: #fff;
+    }
+  }
+}
+.login-wrap {
+  background: #fff;
+  width: 380px;
+
+  &-forget-link {
+    margin: 5px 0 15px 0;
+  }
+
+  & .title {
+    font-size: 18px;
+    color: #373d41;
+    line-height: 24px;
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+  &-form {
+    padding: 30px;
+  }
+  &-button {
+    width: 100%;
+  }
+  .signup {
+    text-decoration: none;
+    color: #000;
+  }
+  .forget,
+  .register {
+    text-decoration: none;
+    color: #1c8de0;
+  }
+}
+
