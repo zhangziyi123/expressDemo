@@ -22,7 +22,6 @@
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
-    "zjgis-ui": "^1.12.6",
     "zrender": "^4.0.3",
     "mapbox-gl": "^0.50.0",
     "font-awesome": "^4.7.0"
