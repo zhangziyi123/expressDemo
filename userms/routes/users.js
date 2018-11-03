@@ -57,7 +57,7 @@ router.get('/login/:name/:password', function (req, res, next) {
             if (result.success) {
                 if (result.rows.length > 0) {
                     var data = result.rows[0];
-                    var expires = moment().add(30, 'minute').valueOf();
+                    var expires = moment().add(7, 'days').valueOf();
                     //    var expires = moment().add(7, 'days').valueOf();
                     var token = jwt.encode({
                         iss: data.userid,

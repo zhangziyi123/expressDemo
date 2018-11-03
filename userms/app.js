@@ -9,7 +9,7 @@ var app = express();
 var index = require('./routes/index');
 var users = require('./routes/users');
 var upload = require('./routes/upload');
-
+var note = require('./routes/note/note');
 var redis = require('redis');
 var client = redis.createClient('6379', '127.0.0.1');
 var jwtUnit = require('./public/util/jwtUtil');
@@ -60,6 +60,7 @@ app.all('*', function (req, res, next) {
 app.use('/', index);
 app.use('/users', users);
 app.use('/uploadfile', upload);
+app.use('/note', note);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Not Found');
