@@ -26,5 +26,12 @@ module.exports = [
     canactive: "/index/user",
     icon: "fa-user",
     routeLink: "/index/user"
+  },
+  {
+    name: "日志",
+    link: "/index/note",
+    canactive: "/index/note",
+    icon: "fa-sticky-note",
+    routeLink: "/index/note"
   }
 ];

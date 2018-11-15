@@ -63,7 +63,6 @@ router.post('/create/:userid', function (req, res, next) {
             + noteModel.abstract + "')";
         var sqlStr = sqlConfig.addNote.replace("{fields}", fields);
         sqlStr = sqlStr.replace("{values}", modelValString);
-        console.log(sqlStr);
         db.query(sqlStr, sqlObj, function (result) {
             if (result.success) {
                 res.send({success: true});

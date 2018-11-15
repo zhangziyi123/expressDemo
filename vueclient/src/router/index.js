@@ -1,23 +1,26 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import store2 from "store2";
-import Cookie from "js-cookie";
-import PageIndex from "../pages/Index.vue";
+import store2 from 'store2'
+import Cookie from 'js-cookie'
+import PageIndex from '../pages/Index.vue'
 
 Vue.use(Router)
 
 const user = resolve => require(['../components/users/user.vue'], resolve)
 const mapbox = resolve => require(['../components/projects/mapbox/mapbox.vue'], resolve)
 const mbStart = resolve => require(['../components/projects/mapbox/mbStart.vue'], resolve)
-
+/*日志*/
+const noteIndex = resolve => require(['../components/note/Note.vue'], resolve)
+const noteList = resolve => require(['../components/note/List.vue'], resolve)
+const noteDetail = resolve => require(['../components/note/Detail.vue'], resolve)
 const router = new Router({
   linkActiveClass: 'active',
   history: true,
   mode: 'history',
   routes: [
     {
-      name: "index",
-      path: "/index",
+      name: 'index',
+      path: '/index',
       component: PageIndex,
       children: [
         {
@@ -26,6 +29,17 @@ const router = new Router({
           component: mapbox,
           children: [
             {name: 'vectortile', path: 'vectortile', component: mbStart}
+          ]
+        },
+        {
+          name: 'note',
+          path: 'note',
+          component: noteIndex,
+          redirect: 'note/list',
+          children: [
+            {name: 'note-list', path: 'list', component: noteList},
+            {name: 'note-detail', path: 'detail/:noteid', component: noteDetail},
+            {name: 'note-create', path: 'create', component: noteDetail}
           ]
         }
       ]
@@ -42,19 +56,19 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  let userInfo = Cookie("expressCookie");
-  userInfo = userInfo && userInfo !== "undefined" ? JSON.parse(unescape(userInfo)) : "";
+  let userInfo = Cookie('expressCookie')
+  userInfo = userInfo && userInfo !== 'undefined' ? JSON.parse(unescape(userInfo)) : ''
   if (userInfo) {
-    store2.set("userInfo", userInfo);
+    store2.set('userInfo', userInfo)
   } else {
-    store2.remove("userInfo");
+    store2.remove('userInfo')
   }
-  let isRunNext = true;
+  let isRunNext = true
   // 判断该路由是否需要登录权限
-  if (isRunNext && !(from.fullPath !== "/" && from.fullPath.includes(to.fullPath))) {
-    next(); // 如果路由地址带query参数，会执行两次beforeEach，并且第二次执行时会将query参数去掉
+  if (isRunNext && !(from.fullPath !== '/' && from.fullPath.includes(to.fullPath))) {
+    next() // 如果路由地址带query参数，会执行两次beforeEach，并且第二次执行时会将query参数去掉
   } else {
-    next(false); // 进入之前需要判断用户是否已经登录
+    next(false) // 进入之前需要判断用户是否已经登录
   }
 })
 

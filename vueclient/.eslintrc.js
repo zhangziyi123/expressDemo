@@ -54,6 +54,7 @@ module.exports = {
     "no-useless-computed-key": 0,
     "no-proto": 0,
     "no-unsafe-finally": 0,
-    "one-var": 1 //连续声明
+    "one-var": 1, //连续声明
+    "indent": 'off'
   }
 }

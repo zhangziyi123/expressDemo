@@ -3,7 +3,7 @@
  * @description:
  * @Date: 2018/3/4 19:16
  */
-import mapService from '../../serviceConfig'
+import mapService from '../../configs/serviceConfig'
 import * as types from '../mutation-types'
 import Vue from 'vue'
 import { paramURL, trim, ObjectMap } from '../../utils/utils'
