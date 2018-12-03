@@ -25,7 +25,7 @@ function getNoteById(noteid, userid, callback) {
     db.query(sqlStr, sqlObj, function (result) {
         if (result.success) {
             if (result.rows.length > 0) {
-                callback && callback(result.rows);
+                callback && callback(result);
             } else {
                 callback && callback([]);
             }
@@ -97,21 +97,44 @@ router.post('/create/:userid', function (req, res, next) {
 router.put('/update/:noteid', function (req, res, next) {
     var noteModel = {};
     noteModel.noteid = req.params.noteid;
-    noteModel.userid = req.query.userid;
+    noteModel.userid = req.body.userid;
+    console.log(req.params);
+    console.log(req.body);
+    console.log("query", req.query);
     var myDate = new Date();
     var mytime = myDate.toLocaleString(); //获取当前时间
     noteModel.updatetime = mytime;
-    getNoteById(noteModel.noteid, noteModel.userid, function (result) {
-        debugger;
-        var updateSqlStr = sqlConfig.modifyNote.replace("{noteid}", noteModel.noteid);
-        // 先验证对应的noteid和userid的记录是否存在
-        var setStr = req.query.content ? "content = " + req.query.content : "";
-        setStr += req.query.abstract ? "abstract = " + req.query.abstract : "";
-        setStr += req.query.title ? "title = " + req.query.title : "";
-        setStr +=  "updatetime = " + noteModel.updatetime;
-        updateSqlStr = updateSqlStr.replace("{model}", setStr);
-        // 开始执行sql语句
-    });
+    if (noteModel.c && noteModel.noteid) {
+        getNoteById(noteModel.noteid, noteModel.userid, function (result) {
+            debugger;
+            if (result.success) {
+                var updateSqlStr = sqlConfig.modifyNote.replace("{noteid}", noteModel.noteid);
+                // 先验证对应的noteid和userid的记录是否存在
+                var setStr = req.body.content ? "content = '" + req.body.content + "'" : "";
+                setStr += req.body.content && req.body.abstract ? ',' : '';
+                setStr += req.body.abstract ? "abstract = '" + req.body.abstract + "'" : "";
+                setStr += (req.body.title && req.body.abstract) || (req.body.title && req.body.abstract) ? ',' : '';
+                setStr += req.body.title ? "title = '" + req.body.title + "'" : "";
+                setStr += req.body.title || req.body.abstract || req.body.content ? ',' : '';
+                setStr += "updatetime = '" + noteModel.updatetime + "'";
+                updateSqlStr = updateSqlStr.replace("{model}", setStr);
+                // 开始执行sql语句
+                console.log(updateSqlStr);
+                db.query(updateSqlStr, sqlObj, function (result) {
+                    if (result.success) {
+                        res.send({success: true});
+                    } else {
+                        res.send({success: false, message: result.msg});
+                    }
+                })
+            } else {
+                res.send({success: false, message: "未知错误!"});
+            }
+        });
+    } else {
+        var msg = 'noteid或userid不能为空';
+        res.send({success: false, message: msg});
+    }
 })
 
 module.exports = router;

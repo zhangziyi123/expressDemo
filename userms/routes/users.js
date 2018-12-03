@@ -114,8 +114,6 @@ router.get('/userinfo', function (req, res, next) {
                 res.send({sucess: true, msg: JSON.parse(userInfo)});
             }
         })
-    } else {
-        res.send({success: false, message: 'token overdue'});
     }
 })
 
