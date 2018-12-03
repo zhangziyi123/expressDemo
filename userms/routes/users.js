@@ -103,13 +103,19 @@ router.get('/modify/password', function (req, res, next) {
 })
 
 /* 获取用户详情接口-根据token获取用户详情 */
-router.get('/userInfo', function (req, res, next) {
+router.get('/userinfo', function (req, res, next) {
     var tk = req.headers.autoken || "";
     var decoded = jwt.decode(tk, global.jwtTokenSecret);
     if (decoded && decoded.iss) {
         global.redisClient.get(decoded.iss, function (err, userInfo) {
-            res.send({sucess: true, msg: JSON.parse(userInfo)});
+            if (err) {
+                res.send({success: false, message: '获取失败'});
+            } else {
+                res.send({sucess: true, msg: JSON.parse(userInfo)});
+            }
         })
+    } else {
+        res.send({success: false, message: 'token overdue'});
     }
 })
 
