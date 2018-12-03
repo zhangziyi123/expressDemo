@@ -16,7 +16,8 @@ var markSqlStr = {
     getNotesByPage: "select * from note_tb where userid = '{userid}' order by updatetime desc limit {size} offset {index}",
     addNote: "insert into note_tb {fields} values {values}",
     deleteNote: "delete from note_tb where noteid = {noteid}",
-    modifyNote: 'update note_tb set {model} where noteid = {noteid}' // UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值
+    modifyNote: 'update note_tb set {model} where noteid = {noteid}', // UPDATE 表名称 SET 列名称1 = 新值,列名称2 = 新值 WHERE 列名称 = 某值
+    getNoteById: "select * from note_tb where userid = '{userid}' and noteid = '{noteid}'"
 }
 
 

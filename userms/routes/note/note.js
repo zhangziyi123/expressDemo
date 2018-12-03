@@ -16,6 +16,25 @@ app.use(bodyParser.urlencoded({extended: false}))
 // parse application/json
 app.use(bodyParser.json())
 
+
+// 公用方法
+// 根据noteid 和 userid 获取note详情
+function getNoteById(noteid, userid, callback) {
+    var sqlStr = sqlConfig.getNoteById.replace("{userid}", userid);
+    sqlStr = sqlStr.replace("{noteid}", noteid);
+    db.query(sqlStr, sqlObj, function (result) {
+        if (result.success) {
+            if (result.rows.length > 0) {
+                callback && callback(result.rows);
+            } else {
+                callback && callback([]);
+            }
+        } else {
+            callback && callback("error");
+        }
+    })
+}
+
 /*根据用户id分页获取mark，支持全部获取*/
 // http://localhost:3000/note/e664e972-2820-43ef-8e55-9e6e5e9d2be0?size=1&index=0
 router.get('/:userid', function (req, res, next) {
@@ -49,7 +68,6 @@ router.get('/:userid', function (req, res, next) {
 router.post('/create/:userid', function (req, res, next) {
     var noteModel = {};
     noteModel.userid = req.params.userid;
-    console.log(req.body);
     noteModel.content = req.body.content || "";
     noteModel.abstract = req.body.abstract || "";
     noteModel.title = req.body.title || "";
@@ -75,6 +93,26 @@ router.post('/create/:userid', function (req, res, next) {
     }
 })
 
+// 更新记录
+router.put('/update/:noteid', function (req, res, next) {
+    var noteModel = {};
+    noteModel.noteid = req.params.noteid;
+    noteModel.userid = req.query.userid;
+    var myDate = new Date();
+    var mytime = myDate.toLocaleString(); //获取当前时间
+    noteModel.updatetime = mytime;
+    getNoteById(noteModel.noteid, noteModel.userid, function (result) {
+        debugger;
+        var updateSqlStr = sqlConfig.modifyNote.replace("{noteid}", noteModel.noteid);
+        // 先验证对应的noteid和userid的记录是否存在
+        var setStr = req.query.content ? "content = " + req.query.content : "";
+        setStr += req.query.abstract ? "abstract = " + req.query.abstract : "";
+        setStr += req.query.title ? "title = " + req.query.title : "";
+        setStr +=  "updatetime = " + noteModel.updatetime;
+        updateSqlStr = updateSqlStr.replace("{model}", setStr);
+        // 开始执行sql语句
+    });
+})
 
 module.exports = router;
 

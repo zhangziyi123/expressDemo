@@ -38,7 +38,7 @@ app.all('*', function (req, res, next) {
 
     // 个别接口可以不带token进行请求
     // TODU： 待优化
-    if (req.originalUrl.indexOf('users/login') > -1) {
+    if (req.originalUrl.indexOf('users/login') > -1 || req.originalUrl.indexOf('static') > -1) {
         next();
     } else {
         var tk = req.headers.autoken || "";
@@ -79,5 +79,7 @@ app.use(function (err, req, res, next) {
     res.render('error');
 });
 
+// http://localhost:3000/swagger/index.html
+app.use('/static', express.static(path.join(__dirname, 'public')));
 
 module.exports = app;
