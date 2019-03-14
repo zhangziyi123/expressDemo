@@ -4,7 +4,6 @@ var sqlObj = require('./sql/connectSql.js');
 var db = require('./sql/users.js');
 var jwt = require('jwt-simple');
 var moment = require('moment');
-var jwtUnit = require('../public/util/jwtUtil');
 var app = express();
 /* GET users listing. */
 router.get('/user', function (req, res, next) {
